@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const { Client } = require("pg")
 const bodyParser = require('body-parser');
-const config = require('../config');
+const config = require('./config');
 
 
 const host = config.host;
