@@ -1,7 +1,6 @@
 {
     "functions": {
       "api": {
-        "handler": "backEnd/index.js",
         "runtime": "node@14"
       }
     }
