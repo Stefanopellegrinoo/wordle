@@ -71,7 +71,7 @@ let lettersArray = [];
 let d = 0
 const letras_contadas = contar_letras(letters);
 
-
+// cambio
 
 function contar_letras (letras) {
   let letras_contadas = {};
