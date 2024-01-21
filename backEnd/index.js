@@ -7,26 +7,28 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 
 
-const host = config.database.host;
-const usuario = config.database.user;
-const contraseña = config.database.contraseña;
-const nombreDeBD = config.database.nombre;
-const puerto = config.database.port
+const host = config.host;
+const usuario = config.user;
+const contraseña = config.password;
+const nombreDeBD = config.database;
+const puerto = config.port
+
+
 
 const client = new Client({
-    user: usuario,
-    host: host,
-    database: nombreDeBD,
-    password: contraseña,
-    port: puerto ,
-    ssl:{
-        rejectUnauthorized :false
-    }
+  user: usuario,
+  host: host,
+  database: nombreDeBD,
+  password: contraseña,
+  port: puerto ,
+  ssl:{
+      rejectUnauthorized :false
+  }
 })
 
 client.connect(function (err, client) {
   if (err) {
-      console.log("error")
+      console.log("error", err)
   }else {
       console.log("bien")
   }    
