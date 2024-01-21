@@ -9,13 +9,13 @@ window.addEventListener('load', function () {
 });
 
 
-
+let url = 'https://back-end-black-rho.vercel.app/api/data' || 'http://localhost:3001/api/data'
 
 let largoArrayPalabras
 
 const buscar = async () => {
   let lasPalabras
-  await axios.get('http://localhost:3001/api/data')
+  await axios.get(url)
     .then(response => {
       lasPalabras = response.data.Result
 
@@ -51,7 +51,7 @@ const noEsta = (nuevaPalabra) => {
     clave1: nuevaPalabra,
   };
 
-  axios.post('http://localhost:3001/api/post', dato)
+  axios.post(url, dato)
     .then(response => {
       console.log('Respuesta del servidor:', response.data);
     })
