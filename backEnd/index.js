@@ -13,7 +13,9 @@ const contraseña = config.password;
 const nombreDeBD = config.database;
 const puerto = config.port
 
-
+module.exports = (req, res) => {
+  res.status(200).json({ message: 'Hello from Vercel!' });
+};
 
 const client = new Client({
   user: usuario,
