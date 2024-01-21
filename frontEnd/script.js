@@ -15,7 +15,7 @@ let largoArrayPalabras
 
 const buscar = async () => {
   let lasPalabras
-  await axios.get('/api/data')
+  await axios.get('http://localhost:3001/api/data')
     .then(response => {
       lasPalabras = response.data.Result
 
@@ -51,7 +51,7 @@ const noEsta = (nuevaPalabra) => {
     clave1: nuevaPalabra,
   };
 
-  axios.post('/api/post', dato)
+  axios.post('http://localhost:3001/api/post', dato)
     .then(response => {
       console.log('Respuesta del servidor:', response.data);
     })
