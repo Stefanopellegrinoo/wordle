@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 const { Client } = require("pg")
 const bodyParser = require('body-parser');
 const config = require('./config');
-
+// cambio
 
 const host = config.host;
 const usuario = config.user;
