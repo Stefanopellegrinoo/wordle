@@ -9,7 +9,7 @@ window.addEventListener('load', function () {
 });
 
 
-let url = 'https://back-end-black-rho.vercel.app' || 'http://localhost:3001'
+let url = 'https://api.render.com/deploy/srv-cmnga9gl5elc738kdm1g?key=bNdvbh2JRAo' || 'http://localhost:3001'
 
 let largoArrayPalabras
 
