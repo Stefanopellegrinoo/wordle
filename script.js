@@ -15,7 +15,7 @@ let largoArrayPalabras
 
 const buscar = async () => {
   let lasPalabras
-  await axios.get(  `${url}/api/data`)
+  await axios.get(  `https://api.render.com/deploy/srv-cmnga9gl5elc738kdm1g?key=bNdvbh2JRAo/api/data`)
     .then(response => {
       lasPalabras = response.data.Result
 
