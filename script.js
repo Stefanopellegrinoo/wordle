@@ -15,7 +15,7 @@ let largoArrayPalabras
 
 const buscar = async () => {
   let lasPalabras
-  await axios.get(  `https://api.render.com/deploy/srv-cmnga9gl5elc738kdm1g?key=bNdvbh2JRAo/api/data`)
+  await axios.get(  `https://wordle-backend-b445.onrender.com/api/data`)
     .then(response => {
       lasPalabras = response.data.Result
 
