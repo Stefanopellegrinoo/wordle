@@ -9,13 +9,13 @@ window.addEventListener('load', function () {
 });
 
 
-let url = 'https://api.render.com/deploy/srv-cmnga9gl5elc738kdm1g?key=bNdvbh2JRAo' || 'http://localhost:3001'
+let url = 'https://wordle-backend-b445.onrender.com' || 'http://localhost:3001'
 
 let largoArrayPalabras
 
 const buscar = async () => {
   let lasPalabras
-  await axios.get(  `https://wordle-backend-b445.onrender.com/api/data`)
+  await axios.get(  `${url}/api/data`)
     .then(response => {
       lasPalabras = response.data.Result
 
