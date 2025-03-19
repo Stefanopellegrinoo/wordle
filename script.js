@@ -220,6 +220,8 @@ function empezar(unaPalabra) {
 
             if (!palabrasGuardadas.includes(palabraL)) {
               noEsta(palabraL);
+              palabrasGuardadas.push(palabraL); // Agregar la nueva palabra
+              localStorage.setItem("text", JSON.stringify(palabrasGuardadas)); 
             }
 
             ArrayvalorRenglon1 = Array.from(valorRenglon1);
