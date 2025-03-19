@@ -9,7 +9,7 @@ window.addEventListener("load", function () {
 });
 
 // let url = "http://localhost:3001";
-let url = "http://wordle-backend-lake-mu.vercel.app";
+let url = "https://wordle-backend-lake-mu.vercel.app";
 
 let largoArrayPalabras;
 
