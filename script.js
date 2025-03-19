@@ -8,7 +8,8 @@ window.addEventListener("load", function () {
   empezarJuego();
 });
 
-let url = "http://localhost:3001";
+// let url = "http://localhost:3001";
+let url = "http://wordle-backend-lake-mu.vercel.app";
 
 let largoArrayPalabras;
 
@@ -28,7 +29,7 @@ const buscar = async () => {
 async function empezarJuego() {
   const todasLasPalbras = await buscar();
   const arrayDePalabras = todasLasPalbras.map((item) => item.word);
-  console.log(todasLasPalbras)
+  // console.log(todasLasPalbras)
   let x = Math.floor(Math.random() * todasLasPalbras.length);
   unaPalabra = todasLasPalbras[x].word;
 
