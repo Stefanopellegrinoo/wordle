@@ -8,8 +8,7 @@ window.addEventListener("load", function () {
   empezarJuego();
 });
 
-// let url = "http://localhost:3001";
-let url = "https://wordle-backend-lake-mu.vercel.app";
+let url = "http://localhost:3101";
 
 let largoArrayPalabras;
 
@@ -28,13 +27,18 @@ const buscar = async () => {
 
 async function empezarJuego() {
   const todasLasPalbras = await buscar();
-  const arrayDePalabras = todasLasPalbras.map((item) => item.word);
-  // console.log(todasLasPalbras)
-  let x = Math.floor(Math.random() * todasLasPalbras.length);
-  unaPalabra = todasLasPalbras[x].word;
+  if (todasLasPalbras && todasLasPalbras.length > 0) {
+    const arrayDePalabras = todasLasPalbras.map((item) => item.word.toUpperCase());
+    let x = Math.floor(Math.random() * todasLasPalbras.length);
+    unaPalabra = todasLasPalbras[x].word.toUpperCase();
 
-  localStorage.setItem("text", JSON.stringify(arrayDePalabras));
-  palabraRandom = JSON.parse(localStorage.getItem("text"));
+    localStorage.setItem("text", JSON.stringify(arrayDePalabras));
+    palabraRandom = JSON.parse(localStorage.getItem("text"));
+  } else {
+    unaPalabra = "APPLE";
+    localStorage.setItem("text", JSON.stringify(["APPLE"]));
+    palabraRandom = ["APPLE"];
+  }
 
   empezar(unaPalabra);
 }
@@ -144,7 +148,8 @@ document.onkeydown = function (e) {
   if (e.keyCode == 8) {
     borrar();
   } else if (e.key === "Enter") {
-    empezar();
+    jota = false;
+    empezar(unaPalabra);
   } else {
     if (guessRows[numero].join("").length == 5) {
       guessRows[numero][ñ];
@@ -192,17 +197,21 @@ boton.addEventListener("click", () => {
   empezar(unaPalabra);
 });
 
-function empezar(unaPalabra) {
-  let palabra = unaPalabra;
+function empezar(palabraRecibida) {
+  let palabra = (palabraRecibida || unaPalabra || "APPLE").toUpperCase();
 
   for (let j = 0; j < 5; j++) {
     ArrayPalabra[j] = palabra[j];
   }
 
+  if (jota) {
+    return;
+  }
+
   if (arranque == "true") {
     valorRenglon1 = guessRows[numero].join("");
 
-    if (valorRenglon1.length < 5 && !jota) {
+    if (valorRenglon1.length < 5) {
       alert("5 letras mostro");
     } else {
       let api = `https://api.dictionaryapi.dev/api/v2/entries/en/${valorRenglon1}`;

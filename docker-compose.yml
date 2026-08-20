@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: wordle_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-wordle}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backEnd
+      dockerfile: Dockerfile
+    container_name: wordle_backend
+    restart: always
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-wordle}
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  frontend:
+    image: nginx:alpine
+    container_name: wordle_frontend
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./estilo.css:/usr/share/nginx/html/estilo.css:ro
+      - ./script.js:/usr/share/nginx/html/script.js:ro
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
